@@ -245,7 +245,7 @@ function get20s(artistArray){
   let twentiesArtists = [];
 
   for(let i = 0; i < artistArray.length; i++) {
-    if(artists[i].years.slice(0, 4) >= 1900 && artists[1].years.slice(7, 11) < 2000) {
+    if(artists[i].years.slice(0, 4) >= 1900 && artists[i].years.slice(0, 4) < 2000 && artists[1].years.slice(7, 11) >= 1900 && artists[1].years.slice(7, 11) < 2000) {
       twentiesArtists.push(artists[i]);
     }
   }
@@ -404,3 +404,25 @@ function randomize(array){
 
 
  /* STRETCH 3: Use advanced array methods (.map, .reduce, .filer) to refactor your MVP code (create an array of all artists born in the 1900s with .filter, for example) */
+
+//  function getborn20(artistArray){
+
+//   let twentiesArtists = [];
+
+//   for(let i = 0; i < artistArray.length; i++) {
+//     artistArray.filter()
+//     }
+//   }
+
+//   return twentiesArtists;
+// }
+function get20sFilter(artists) {
+  let artists20 = [];
+  artists20 = artists.filter(function(item) {
+    return item.years.slice(0, 4) >= 1900 && item.years.slice(0, 4) < 2000 && item.years.slice(7, 11) >= 1900 && item.years.slice(7, 11) < 2000;
+  })
+
+  return artists20;
+}
+
+console.log(get20sFilter(artists));

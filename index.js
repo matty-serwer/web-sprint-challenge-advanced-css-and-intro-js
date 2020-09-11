@@ -322,7 +322,7 @@ function lotsOfArt(array){
 
   for(let i = 0; i < array.length; i++){
     if(array[i].paintings > 100) {
-      lotsOfArtArtists.push(array[i]);
+      lotsOfArtArtists.push(array[i].name);
     }
   }
   return lotsOfArtArtists;

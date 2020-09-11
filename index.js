@@ -216,8 +216,8 @@ console.log(artists[2].bio);
 
 /* Task 2: There is a typo in your dataset 😱 The 9th artist, Vincent Van Gogh is currently Vincent Van Dough. Use an array method to fix this issue and console.log() to check your work. */
 
-artists[7].name = "Vincent Van Gogh";
-console.log(artists[7]);
+artists[8].name = "Vincent Van Gogh";
+console.log(artists[8]);
 
 /* Task 3: Create a function called `getArtistByIndex` that takes two arguments:
  *     (1) artists array
@@ -355,20 +355,52 @@ The function should console.log 50 chunks of HTML code that match the structure 
 
 ‼️ You do **NOT** need to get these to display on your page, but you can copy and paste the result into your HTML file if you'd like to see what that would look like. */
 
-function getHTML(/* Code here */){
+// "id": 19,
+//       "name": "Albrecht Dürer",
+//       "years": "1471 - 1528",
+//       "genre": "Northern Renaissance",
+//       "nationality": "German",
+//       "bio": "Albrecht Dürer (; German: [ˈʔalbʁɛçt ˈdyːʁɐ]; 21 May 1471 – 6 April 1528) sometimes spelt in English as Durer or Duerer, without umlaut, was a painter, printmaker, and theorist of the German Renaissance. Born in Nuremberg, Dürer established his reputation and influence across Europe when he was still in his twenties due to his high-quality woodcut prints.",
+//       "wikipedia": "http://en.wikipedia.org/wiki/Albrecht_Dürer",
+//       "paintings": 328
 
-    /* Code here */
+// function getHTML(array){
+// let HTMLContent = "";
 
-  }
+//     for(let i = 0; i < array.length; i++){
+//       HTMLContent += `<div id = "artist"> \n`;
+//       for(const key in array[i]) {
+//         // key is the current key
+//         // array[i][key] is the current value
+//         HTMLContent += `<div class = "${key}`
+
+//       }
+//     }
+
+//   }
+
+//   getHTML(artists);
 
 
 /* STRETCH 2: Create a function called `randomize` that takes a data array as an argument and returns a the same array in a randomized order. */
 
-function randomize(/* Code here */){
+function randomize(array){
 
-    /* Code here */
-
+    let randArray = [];
+    let calledNums = [];
+    let randomNumber;
+  
+    for (let i = 0; calledNums.length < array.length; i++) {
+      randomNumber = Math.floor(Math.random() * array.length);
+      if(!calledNums.includes(randomNumber)) {
+        randArray.push(array[randomNumber]);
+        calledNums.push(randomNumber);
+      }
+    }
+    return randArray;
   }
+
+  console.log(randomize(artists));
 
 
  /* STRETCH 3: Use advanced array methods (.map, .reduce, .filer) to refactor your MVP code (create an array of all artists born in the 1900s with .filter, for example) */

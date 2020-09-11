@@ -206,13 +206,18 @@ const artists = [
 /* Task 1: Practice accessing data above by console.log-ing following items:
 
 (1) Name of the first artist (0th index) in the array
+
 (2) Bio of the third artist (2nd index) in the array */
 
+console.log(artists[0].name);
+
+console.log(artists[2].bio);
 
 
 /* Task 2: There is a typo in your dataset 😱 The 9th artist, Vincent Van Gogh is currently Vincent Van Dough. Use an array method to fix this issue and console.log() to check your work. */
 
-
+artists[8].name = "Vincent Van Gogh";
+console.log(artists[8]);
 
 /* Task 3: Create a function called `getArtistByIndex` that takes two arguments:
  *     (1) artists array
@@ -222,20 +227,36 @@ const artists = [
  * For example, if getArtistByIndex is invoked with the artists dataset and the number 0,
  * it will return `The artist at index 0 is Amedeo Modigliani`.
 */
+
 function getArtistByIndex(array, index) {
-    /* code here */
+    return `The artist at index ${array[index].id} is ${array[index].name}`
   }
+
+let artistString = getArtistByIndex(artists, 5);
+console.log(artistString);
   
   /**
 
 
 /* Task 4: Create a function called get20s() that takes data as an argument and returns an array with names of artists who were born in and died in 20th century (1900-2000) example born in 1901 and died in 1959 - included / born in 1889 and died in 1925 not included - should return ["Salvador Dali", "Frida Kahlo"]*/
 
-function get20s(/* Code here */){
+function get20s(artistArray){
 
-  /* Code here */
+  let twentiesArtists = [];
 
+  for(let i = 0; i < artistArray.length; i++) {
+    if(artists[i].years.slice(0, 4) >= 1900 && artists[i].years.slice(0, 4) < 2000 && artists[1].years.slice(7, 11) >= 1900 && artists[1].years.slice(7, 11) < 2000) {
+      twentiesArtists.push(artists[i]);
+    }
+  }
+
+  return twentiesArtists;
 }
+
+console.log(get20s(artists));
+
+// console.log(artists[1].years.slice(0, 4));
+// console.log(artists[1].years.slice(7, 11));
 
 
 /* Task 5: Create a function called `removeArtist` that takes two arguments:
@@ -248,10 +269,12 @@ function get20s(/* Code here */){
  * 
  * Note that sucessfully invoking this function multiple times without refreshing your browser will continuously remove artists from the array until there are none left. If you refresh your browser, the data will reset.  
 */
-function removeArtist(/*code here*/) {
-    /* code here */
-  }
-  
+function removeArtist(array, index) {
+    array.splice(index, 1);
+}
+
+removeArtist(artists, 4);
+console.log(artists);
  
 
 /**
@@ -267,11 +290,23 @@ bio: Add 1-2 sentences (or use lorem ipsum)
 
 At the end, this function should return the new array with information added"*/
 
-function addArtist(/* Code here */){
+function addArtist(array, artist){
+  array.push(artist);
+  return array;
+}
 
-    /* Code here */
+const mattySerwer = {
+id: 20,
+name: "Matthew Serwer", 
+years: "1981 - Present",
+genre: "Web Design", 
+nationality: "American",
+bio: "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi."
+}
 
-  }
+console.log(addArtist(artists, mattySerwer));
+
+
 
 /* Task 7: Create a function called lotsOfArt() that takes one argument: 
 
@@ -281,11 +316,19 @@ and returns an array with names of artists who painted more than 100 paintings.
 
 For example lotsOfArt(artists); will return ["Amedeo Modigliani", "Rene Magritte", ..."Albrecht Dürer"]*/
 
-function lotsOfArt(/* Code here */){
+function lotsOfArt(array){
 
-  /* Code here */
+  let lotsOfArtArtists = [];
 
+  for(let i = 0; i < array.length; i++){
+    if(array[i].paintings > 100) {
+      lotsOfArtArtists.push(array[i].name);
+    }
+  }
+  return lotsOfArtArtists;
 }
+
+console.log(lotsOfArt(artists));
 
 
 
@@ -312,20 +355,74 @@ The function should console.log 50 chunks of HTML code that match the structure 
 
 ‼️ You do **NOT** need to get these to display on your page, but you can copy and paste the result into your HTML file if you'd like to see what that would look like. */
 
-function getHTML(/* Code here */){
+// "id": 19,
+//       "name": "Albrecht Dürer",
+//       "years": "1471 - 1528",
+//       "genre": "Northern Renaissance",
+//       "nationality": "German",
+//       "bio": "Albrecht Dürer (; German: [ˈʔalbʁɛçt ˈdyːʁɐ]; 21 May 1471 – 6 April 1528) sometimes spelt in English as Durer or Duerer, without umlaut, was a painter, printmaker, and theorist of the German Renaissance. Born in Nuremberg, Dürer established his reputation and influence across Europe when he was still in his twenties due to his high-quality woodcut prints.",
+//       "wikipedia": "http://en.wikipedia.org/wiki/Albrecht_Dürer",
+//       "paintings": 328
 
-    /* Code here */
+// function getHTML(array){
+// let HTMLContent = "";
 
-  }
+//     for(let i = 0; i < array.length; i++){
+//       HTMLContent += `<div id = "artist"> \n`;
+//       for(const key in array[i]) {
+//         // key is the current key
+//         // array[i][key] is the current value
+//         HTMLContent += `<div class = "${key}`
+
+//       }
+//     }
+
+//   }
+
+//   getHTML(artists);
 
 
 /* STRETCH 2: Create a function called `randomize` that takes a data array as an argument and returns a the same array in a randomized order. */
 
-function randomize(/* Code here */){
+function randomize(array){
 
-    /* Code here */
-
+    let randArray = [];
+    let calledNums = [];
+    let randomNumber;
+  
+    for (let i = 0; calledNums.length < array.length; i++) {
+      randomNumber = Math.floor(Math.random() * array.length);
+      if(!calledNums.includes(randomNumber)) {
+        randArray.push(array[randomNumber]);
+        calledNums.push(randomNumber);
+      }
+    }
+    return randArray;
   }
+
+  console.log(randomize(artists));
 
 
  /* STRETCH 3: Use advanced array methods (.map, .reduce, .filer) to refactor your MVP code (create an array of all artists born in the 1900s with .filter, for example) */
+
+//  function getborn20(artistArray){
+
+//   let twentiesArtists = [];
+
+//   for(let i = 0; i < artistArray.length; i++) {
+//     artistArray.filter()
+//     }
+//   }
+
+//   return twentiesArtists;
+// }
+function get20sFilter(artists) {
+  let artists20 = [];
+  artists20 = artists.filter(function(item) {
+    return item.years.slice(0, 4) >= 1900 && item.years.slice(0, 4) < 2000 && item.years.slice(7, 11) >= 1900 && item.years.slice(7, 11) < 2000;
+  })
+
+  return artists20;
+}
+
+console.log(get20sFilter(artists));
